@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Present — Positive, Negative & Question</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#f7f9fc;color:#1a1a2e;padding:1.5rem}
+.app{max-width:780px;margin:0 auto}
+h1{font-size:20px;font-weight:600;color:#1a1a2e;margin-bottom:4px}
+.subtitle{font-size:13px;color:#666;margin-bottom:1.25rem}
+.score-pill{display:inline-flex;gap:14px;background:#e8f0fe;border-radius:20px;padding:6px 16px;margin-bottom:1.25rem}
+.score-pill span{font-size:13px;color:#3a5a9a}
+.score-pill strong{font-weight:600;color:#1a3a7a}
+.tabs{display:flex;gap:0;border-radius:10px;overflow:hidden;border:1px solid #d0d8f0;margin-bottom:1.25rem;background:#fff}
+.tab{flex:1;padding:9px 8px;border:none;background:transparent;font-size:13px;cursor:pointer;color:#666;font-family:inherit;transition:all .15s;text-align:center}
+.tab.on{background:#3a5a9a;color:#fff;font-weight:500}
+.prog-bar{height:4px;background:#dde5f5;border-radius:2px;margin-bottom:1.25rem;overflow:hidden}
+.prog-fill{height:100%;background:#3a5a9a;border-radius:2px;transition:width .4s}
+/* EXPLORE */
+.tense-note{background:#e8f0fe;border-radius:8px;padding:10px 14px;font-size:13px;color:#3a5a9a;margin-bottom:1rem;line-height:1.6}
+.tense-note b{font-weight:600;color:#1a3a7a}
+.subj-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem;align-items:center}
+.subj-row label{font-size:12px;color:#888}
+.sbtn{padding:5px 12px;border-radius:20px;border:1px solid #d0d8f0;background:#fff;font-size:13px;cursor:pointer;color:#666;transition:all .15s;font-family:inherit}
+.sbtn.on{background:#3a5a9a;color:#fff;border-color:#3a5a9a}
+.triple{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1rem}
+.fbox{padding:14px 12px;border-radius:10px;text-align:center}
+.fbox.p{background:#e6f4ea;border:1px solid #a8d5b5}
+.fbox.n{background:#fce8e6;border:1px solid #f5a89e}
+.fbox.q{background:#e8f0fe;border:1px solid #a8bef5}
+.flabel{font-size:10px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px}
+.fbox.p .flabel{color:#2d7a4a}.fbox.n .flabel{color:#c0392b}.fbox.q .flabel{color:#2a4fa8}
+.fex{font-size:15px;font-weight:600;margin-bottom:5px;line-height:1.4;color:#1a1a2e}
+.fstr{font-size:11px;color:#888}
+.rule-box{background:#fff8e6;border:1px solid #f0d080;border-radius:8px;padding:10px 14px;font-size:13px;color:#7a5a00;line-height:1.7;margin-bottom:1rem}
+.rule-box b{font-weight:600;color:#5a4000}
+.tip{background:#fff;border-left:3px solid #f5a623;border-radius:0 8px 8px 0;padding:9px 14px;font-size:13px;color:#7a5000;line-height:1.6;margin-bottom:1rem}
+.tip b{font-weight:600}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{padding:7px 16px;border-radius:8px;border:1px solid #d0d8f0;background:#fff;font-size:13px;cursor:pointer;color:#1a1a2e;transition:all .15s;font-family:inherit}
+.btn:hover{background:#e8f0fe;border-color:#a8bef5}
+/* QUIZ */
+.qcard{background:#fff;border:1px solid #d0d8f0;border-radius:12px;padding:1.25rem;margin-bottom:1rem}
+.qtag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;margin-bottom:10px}
+.qtag.p{background:#e6f4ea;color:#2d7a4a}
+.qtag.n{background:#fce8e6;color:#c0392b}
+.qtag.q{background:#e8f0fe;color:#2a4fa8}
+.qprompt{font-size:15px;color:#1a1a2e;margin-bottom:14px;line-height:1.6}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.opt{padding:11px 14px;border-radius:8px;border:1px solid #d0d8f0;background:#fff;font-size:14px;cursor:pointer;color:#1a1a2e;transition:all .15s;text-align:left;font-family:inherit}
+.opt:hover:not(:disabled){background:#e8f0fe}
+.opt.ok{background:#e6f4ea;border-color:#a8d5b5;color:#2d7a4a;font-weight:500}
+.opt.bad{background:#fce8e6;border-color:#f5a89e;color:#c0392b}
+.fb{margin-top:10px;padding:9px 14px;border-radius:8px;font-size:13px;line-height:1.6}
+.fb.ok{background:#e6f4ea;color:#2d7a4a}
+.fb.err{background:#fce8e6;color:#c0392b}
+/* TRANSFORM */
+.tcard{background:#fff;border:1px solid #d0d8f0;border-radius:12px;padding:1.25rem;margin-bottom:1rem}
+.src{background:#f0f4ff;border-radius:8px;padding:10px 14px;font-size:15px;color:#1a1a2e;margin-bottom:12px;font-weight:500}
+.tinput{width:100%;padding:10px 12px;border-radius:8px;border:1px solid #c0c8e8;background:#fff;font-size:14px;color:#1a1a2e;outline:none;font-family:inherit}
+.tinput:focus{border-color:#3a5a9a;box-shadow:0 0 0 3px rgba(58,90,154,.1)}
+.tinput:disabled{opacity:.55}
+.btn.pri{background:#3a5a9a;color:#fff;border-color:#3a5a9a}
+.btn.pri:hover{background:#2d4a8a}
+/* BUILD */
+.word-bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;min-height:42px;padding:10px;background:#f7f9fc;border-radius:8px;border:1px dashed #c0c8e8}
+.built-zone{display:flex;flex-wrap:wrap;gap:8px;min-height:42px;padding:10px;border-radius:8px;border:1.5px dashed #a8bef5;margin-bottom:12px;background:#f0f4ff}
+/* WALKTHROUGH */
+#wt-backdrop{position:fixed;inset:0;background:rgba(20,30,60,.45);z-index:1000}
+#wt-hl{position:fixed;z-index:1001;border-radius:10px;box-shadow:0 0 0 4px #3a5a9a,0 0 0 8px rgba(58,90,154,.25);pointer-events:none;transition:all .3s}
+#wt-hand{position:fixed;z-index:1003;font-size:26px;pointer-events:none;animation:wbob .8s ease-in-out infinite alternate}
+@keyframes wbob{from{transform:translateY(0) rotate(-12deg)}to{transform:translateY(-7px) rotate(-12deg)}}
+#wt-bubble{position:fixed;z-index:1002;background:#fff;border-radius:12px;padding:16px 18px;max-width:255px;box-shadow:0 6px 24px rgba(0,0,0,.15)}
+#wt-bubble h3{font-size:14px;font-weight:600;color:#1a1a2e;margin-bottom:6px}
+#wt-bubble p{font-size:13px;color:#555;line-height:1.6;margin-bottom:12px}
+.wt-btns{display:flex;gap:8px;align-items:center}
+.wt-next{padding:6px 14px;border-radius:8px;background:#3a5a9a;color:#fff;border:none;font-size:13px;cursor:pointer;font-family:inherit;font-weight:500}
+.wt-skip{padding:6px 10px;background:transparent;color:#999;border:none;font-size:12px;cursor:pointer;font-family:inherit}
+.wt-dots{display:flex;gap:5px;margin-left:auto}
+.wt-dot{width:6px;height:6px;border-radius:50%;background:#ddd}
+.wt-dot.on{background:#3a5a9a}
+.streak-msg{font-size:12px;color:#2d7a4a;font-weight:600;margin-left:3px}
+</style>
+</head>
+<body>
+<div class="app">
+  <h1>Simple present tense</h1>
+  <p class="subtitle">Positive, negative and question forms — A1 level</p>
+  <div class="score-pill">
+    <span>Score <strong id="sc">0</strong></span>
+    <span>Streak <strong id="st">0</strong><span class="streak-msg" id="stmsg"></span></span>
+  </div>
+  <div class="tabs">
+    <button class="tab on" onclick="setMode('explore',this)">Explore</button>
+    <button class="tab" onclick="setMode('quiz',this)">Quiz</button>
+    <button class="tab" onclick="setMode('transform',this)">Transform</button>
+    <button class="tab" onclick="setMode('build',this)">Build</button>
+  </div>
+  <div class="prog-bar"><div class="prog-fill" id="prog" style="width:0%"></div></div>
+
+  <!-- EXPLORE -->
+  <div id="pane-explore">
+    <div class="tense-note"><b>Simple present</b> — use for habits, routines and facts. <b>He/she/it</b> gets a special <b>-s</b> ending!</div>
+    <div class="subj-row">
+      <label>Subject:</label>
+      <button class="sbtn on" onclick="setSubj('I',this)">I</button>
+      <button class="sbtn" onclick="setSubj('you',this)">you</button>
+      <button class="sbtn" onclick="setSubj('he',this)">he / she</button>
+      <button class="sbtn" onclick="setSubj('we',this)">we</button>
+      <button class="sbtn" onclick="setSubj('they',this)">they</button>
+    </div>
+    <div class="triple">
+      <div class="fbox p"><div class="flabel">Positive</div><div class="fex" id="ep"></div><div class="fstr" id="esp"></div></div>
+      <div class="fbox n"><div class="flabel">Negative</div><div class="fex" id="en"></div><div class="fstr" id="esn"></div></div>
+      <div class="fbox q"><div class="flabel">Question</div><div class="fex" id="eq"></div><div class="fstr" id="esq"></div></div>
+    </div>
+    <div class="rule-box" id="erule"></div>
+    <div class="tip" id="etip"></div>
+    <div class="btn-row"><button class="btn" onclick="newVerb()">New verb 🎲</button></div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="pane-quiz" style="display:none">
+    <div id="qbox"></div>
+    <button class="btn pri" id="qnext" onclick="nextQ()" style="display:none;margin-top:4px">Next question →</button>
+  </div>
+
+  <!-- TRANSFORM -->
+  <div id="pane-transform" style="display:none">
+    <div id="tbox"></div>
+    <button class="btn pri" id="tnext" onclick="nextTr()">New sentence →</button>
+  </div>
+
+  <!-- BUILD -->
+  <div id="pane-build" style="display:none">
+    <div id="bbox"></div>
+  </div>
+</div>
+
+<!-- WALKTHROUGH -->
+<div id="wt-backdrop" style="display:none" onclick="wtSkip()"></div>
+<div id="wt-hl" style="display:none"></div>
+<div id="wt-hand" style="display:none">👆</div>
+<div id="wt-bubble" style="display:none">
+  <h3 id="wt-title"></h3>
+  <p id="wt-text"></p>
+  <div class="wt-btns">
+    <button class="wt-next" onclick="wtNext()">Next →</button>
+    <button class="wt-skip" onclick="wtSkip()">Skip</button>
+    <div class="wt-dots" id="wt-dots"></div>
+  </div>
+</div>
+
+<script>
+const VERBS=[
+  {b:'work',s:'works',ing:'working'},{b:'play',s:'plays',ing:'playing'},
+  {b:'eat',s:'eats',ing:'eating'},{b:'drink',s:'drinks',ing:'drinking'},
+  {b:'study',s:'studies',ing:'studying'},{b:'watch',s:'watches',ing:'watching'},
+  {b:'cook',s:'cooks',ing:'cooking'},{b:'walk',s:'walks',ing:'walking'},
+  {b:'sleep',s:'sleeps',ing:'sleeping'},{b:'read',s:'reads',ing:'reading'},
+  {b:'listen',s:'listens',ing:'listening'},{b:'help',s:'helps',ing:'helping'},
+  {b:'call',s:'calls',ing:'calling'},{b:'open',s:'opens',ing:'opening'},
+  {b:'wash',s:'washes',ing:'washing'},{b:'visit',s:'visits',ing:'visiting'},
+  {b:'learn',s:'learns',ing:'learning'},{b:'close',s:'closes',ing:'closing'},
+  {b:'talk',s:'talks',ing:'talking'},{b:'live',s:'lives',ing:'living'}
+];
+const SUBJS=['I','you','he','we','they'];
+
+function pos(s,v){return s==='he'?`${s} ${v.s}`:`${s} ${v.b}`}
+function neg(s,v){return s==='he'?`${s} doesn't ${v.b}`:`${s} don't ${v.b}`}
+function que(s,v){return s==='he'?`Does ${s} ${v.b}?`:`Do ${s} ${v.b}?`}
+function sp(s){return s==='he'?'he/she + verb-s':'subject + verb'}
+function sn(s){return s==='he'?'he/she + doesn\'t + verb':'subject + don\'t + verb'}
+function sq(s){return s==='he'?'Does + he/she + verb?':'Do + subject + verb?'}
+
+const TIPS={
+  I:"<b>I</b> never adds -s. Say <b>I work</b>, NOT <b>I works</b>.",
+  you:"<b>You</b> never adds -s. Say <b>you work</b>, NOT <b>you works</b>.",
+  he:"<b>He/she/it</b> always gets <b>-s</b>! Say <b>he works</b>. But in negatives: <b>he doesn't work</b> — no -s after doesn't!",
+  we:"<b>We</b> never adds -s. Say <b>we work</b>, NOT <b>we works</b>.",
+  they:"<b>They</b> never adds -s. Say <b>they work</b>, NOT <b>they works</b>."
+};
+const RULES={
+  I:"<b>Positive:</b> I + verb &nbsp;|&nbsp; <b>Negative:</b> I + don't + verb &nbsp;|&nbsp; <b>Question:</b> Do + I + verb?",
+  you:"<b>Positive:</b> you + verb &nbsp;|&nbsp; <b>Negative:</b> you + don't + verb &nbsp;|&nbsp; <b>Question:</b> Do + you + verb?",
+  he:"<b>Positive:</b> he/she + verb-s &nbsp;|&nbsp; <b>Negative:</b> he/she + doesn't + verb &nbsp;|&nbsp; <b>Question:</b> Does + he/she + verb?",
+  we:"<b>Positive:</b> we + verb &nbsp;|&nbsp; <b>Negative:</b> we + don't + verb &nbsp;|&nbsp; <b>Question:</b> Do + we + verb?",
+  they:"<b>Positive:</b> they + verb &nbsp;|&nbsp; <b>Negative:</b> they + don't + verb &nbsp;|&nbsp; <b>Question:</b> Do + they + verb?"
+};
+
+let curS='I', curV=VERBS[0], score=0, streak=0, totalAns=0;
+function rand(a){return a[Math.floor(Math.random()*a.length)]}
+function updScore(){
+  document.getElementById('sc').textContent=score;
+  document.getElementById('st').textContent=streak;
+  document.getElementById('stmsg').textContent=streak>=5?' 🔥':streak>=3?' 👏':'';
+  document.getElementById('prog').style.width=Math.min(100,Math.round((score/Math.max(1,totalAns))*100))+'%';
+}
+function setMode(m,btn){
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  ['explore','quiz','transform','build'].forEach(p=>document.getElementById('pane-'+p).style.display=p===m?'block':'none');
+  if(m==='quiz')nextQ();if(m==='transform')nextTr();if(m==='build')nextBuild();
+}
+function setSubj(s,btn){
+  curS=s;document.querySelectorAll('.sbtn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderE();
+}
+function newVerb(){curV=rand(VERBS);renderE()}
+function renderE(){
+  document.getElementById('ep').textContent=pos(curS,curV);
+  document.getElementById('en').textContent=neg(curS,curV);
+  document.getElementById('eq').textContent=que(curS,curV);
+  document.getElementById('esp').textContent=sp(curS);
+  document.getElementById('esn').textContent=sn(curS);
+  document.getElementById('esq').textContent=sq(curS);
+  document.getElementById('erule').innerHTML=RULES[curS];
+  document.getElementById('etip').innerHTML=TIPS[curS];
+}
+function esc(s){return s.replace(/'/g,"\\'").replace(/"/g,'&quot;')}
+function nextQ(){
+  document.getElementById('qnext').style.display='none';
+  const s=rand(SUBJS),v=rand(VERBS),ft=rand(['pos','neg','q']);
+  const correct=ft==='pos'?pos(s,v):ft==='neg'?neg(s,v):que(s,v);
+  const label=ft==='pos'?'positive':ft==='neg'?'negative':'question';
+  const cls=ft==='pos'?'p':ft==='neg'?'n':'q';
+  let wrongs=new Set();
+  while(wrongs.size<3){const w=ft==='pos'?pos(rand(SUBJS),rand(VERBS)):ft==='neg'?neg(rand(SUBJS),rand(VERBS)):que(rand(SUBJS),rand(VERBS));if(w!==correct)wrongs.add(w);}
+  const opts=[correct,...wrongs].sort(()=>Math.random()-.5);
+  document.getElementById('qbox').innerHTML=`<div class="qcard"><span class="qtag ${cls}">${label}</span><div class="qprompt">Make the <b>${label}</b> form of <b>"${v.b}"</b> with subject <b>"${s}"</b>:</div><div class="opts">${opts.map(o=>`<button class="opt" onclick="pickQ(this,'${esc(o)}','${esc(correct)}','${s}')">${o}</button>`).join('')}</div><div id="qfb"></div></div>`;
+}
+function pickQ(btn,chosen,correct,s){
+  if(btn.closest('.opts').querySelector('.ok,.bad'))return;
+  totalAns++;
+  btn.closest('.opts').querySelectorAll('.opt').forEach(b=>{b.disabled=true;if(b.textContent===correct)b.classList.add('ok');else if(b===btn&&chosen!==correct)b.classList.add('bad');});
+  const fb=document.getElementById('qfb');
+  if(chosen===correct){score++;streak++;fb.className='fb ok';fb.textContent='Well done! Correct!'}
+  else{streak=0;fb.className='fb err';fb.innerHTML=`Not quite — the answer is: <b>${correct}</b>`;}
+  updScore();document.getElementById('qnext').style.display='inline-block';
+}
+function nextTr(){
+  document.getElementById('tnext').style.display='none';
+  const s=rand(SUBJS),v=rand(VERBS);
+  const tasks=[{from:'positive',to:'negative',src:pos(s,v),ans:neg(s,v),hint:sn(s)},{from:'positive',to:'question',src:pos(s,v),ans:que(s,v),hint:sq(s)},{from:'negative',to:'positive',src:neg(s,v),ans:pos(s,v),hint:sp(s)},{from:'question',to:'positive',src:que(s,v),ans:pos(s,v),hint:sp(s)}];
+  const t=rand(tasks);const tc=x=>x==='positive'?'p':x==='negative'?'n':'q';
+  document.getElementById('tbox').innerHTML=`<div class="tcard"><p style="font-size:12px;color:#888;margin-bottom:8px">Change <span class="qtag ${tc(t.from)}">${t.from}</span> → <span class="qtag ${tc(t.to)}">${t.to}</span></p><div class="src">${t.src}</div><input id="tinp" class="tinput" placeholder="Write the ${t.to} form..." onkeydown="if(event.key==='Enter')checkTr('${esc(t.ans)}','${esc(t.hint)}')"><div class="btn-row" style="margin-top:10px"><button class="btn pri" onclick="checkTr('${esc(t.ans)}','${esc(t.hint)}')">Check</button><button class="btn" onclick="document.getElementById('thint').style.display='block'">Hint</button></div><div id="thint" style="display:none;margin-top:8px;font-size:12px;color:#888">Structure: <b>${t.hint}</b></div><div id="tfb"></div></div>`;
+  document.getElementById('tinp').focus();
+}
+function checkTr(ans,hint){
+  const inp=document.getElementById('tinp');const val=inp.value.trim();if(!val)return;
+  inp.disabled=true;totalAns++;
+  const norm=s=>s.toLowerCase().replace(/[?.!]/g,'').trim();
+  const fb=document.getElementById('tfb');
+  if(norm(val)===norm(ans)){score++;streak++;fb.className='fb ok';fb.textContent='Excellent! Correct!'}
+  else{streak=0;fb.className='fb err';fb.innerHTML=`Not quite. Answer: <b>${ans}</b><br><small>Structure: ${hint}</small>`;}
+  updScore();document.getElementById('tnext').style.display='inline-block';
+}
+function nextBuild(){
+  const s=rand(SUBJS),v=rand(VERBS),ft=rand(['pos','neg','q']);
+  const correct=ft==='pos'?pos(s,v):ft==='neg'?neg(s,v):que(s,v);
+  const label=ft==='pos'?'positive':ft==='neg'?'negative':'question';
+  const cls=ft==='pos'?'p':ft==='neg'?'n':'q';
+  const words=correct.replace('?','').split(' ');
+  const scrambled=[...words].sort(()=>Math.random()-.5);
+  document.getElementById('bbox').innerHTML=`<div class="tcard"><p style="font-size:13px;color:#888;margin-bottom:10px">Put the words in order — make a <span class="qtag ${cls}">${label}</span> sentence:</p><div class="word-bank" id="wbank"></div><p style="font-size:12px;color:#888;margin-bottom:6px">Your sentence:</p><div class="built-zone" id="built"></div><div class="btn-row"><button class="btn pri" onclick="chkBuild('${esc(correct)}','${ft==='q'}')">Check</button><button class="btn" onclick="clrBuild()">Clear</button><button class="btn" onclick="nextBuild()">New</button></div><div id="bfb"></div></div>`;
+  const bank=document.getElementById('wbank');
+  scrambled.forEach(w=>{const b=document.createElement('button');b.className='btn';b.textContent=w;b.style.cssText='font-size:14px;padding:5px 11px';b.onclick=()=>{if(b.dataset.used)return;b.dataset.used='1';b.style.opacity='.3';b.disabled=true;const sl=document.createElement('button');sl.className='btn';sl.textContent=w;sl.style.cssText='font-size:14px;padding:5px 11px;background:#e8f0fe';sl.onclick=()=>{sl.remove();b.disabled=false;b.style.opacity='1';delete b.dataset.used};document.getElementById('built').appendChild(sl);};bank.appendChild(b);});
+}
+function clrBuild(){document.getElementById('built').querySelectorAll('button').forEach(b=>b.click())}
+function chkBuild(correct,isQ){
+  const built=[...document.getElementById('built').querySelectorAll('button')].map(b=>b.textContent).join(' ');if(!built)return;
+  totalAns++;const norm=s=>s.toLowerCase().replace(/[?.!]/g,'').trim();
+  const ans=isQ==='true'?built+'?':built;const fb=document.getElementById('bfb');
+  if(norm(ans)===norm(correct)){score++;streak++;fb.className='fb ok';fb.textContent='Perfect! Well done!'}
+  else{streak=0;fb.className='fb err';fb.innerHTML=`Not quite. Correct: <b>${correct}</b>`;}
+  updScore();
+}
+
+// WALKTHROUGH
+const WT=[
+  {sel:'h1',t:'Welcome!',txt:'This is your Simple Present explorer. You can see and practise all three forms: positive, negative and question.'},
+  {sel:'.tabs',t:'Four activities',txt:'Choose how to learn: Explore the forms, take a Quiz, Transform sentences, or Build sentences from word tiles.'},
+  {sel:'.subj-row',t:'Change the subject',txt:'Click any subject to see how the verb changes. Watch out — he/she/it is special!'},
+  {sel:'.triple',t:'Three forms',txt:'Green = positive, red = negative, blue = question. The small text shows the grammar pattern.'},
+  {sel:'.rule-box',t:'Grammar rule',txt:'This box shows the exact rule for the subject you selected. Read it carefully!'},
+  {sel:'.tip',t:'Common mistake!',txt:'The yellow tip shows the most common beginner mistake for this subject. Very important!'},
+  {sel:'.btn-row',t:'Try a new verb',txt:'Click "New verb" to practise with a different verb. Try lots of different ones!'},
+];
+let wStep=0;
+function wtStart(){
+  document.getElementById('wt-backdrop').style.display='block';
+  const dots=document.getElementById('wt-dots');
+  dots.innerHTML=WT.map((_,i)=>`<div class="wt-dot" id="wdot${i}"></div>`).join('');
+  wtShow(0);
+}
+function wtShow(i){
+  wStep=i;const step=WT[i];const el=document.querySelector(step.sel);
+  if(!el){wtNext();return;}
+  document.querySelectorAll('.wt-dot').forEach((d,j)=>d.classList.toggle('on',j===i));
+  document.getElementById('wt-title').textContent=step.t;
+  document.getElementById('wt-text').textContent=step.txt;
+  document.querySelector('.wt-next').textContent=i===WT.length-1?'Got it!':'Next →';
+  const r=el.getBoundingClientRect(),pad=8;
+  const hl=document.getElementById('wt-hl');
+  hl.style.cssText=`display:block;position:fixed;left:${r.left-pad}px;top:${r.top-pad}px;width:${r.width+pad*2}px;height:${r.height+pad*2}px;border-radius:10px;box-shadow:0 0 0 4px #3a5a9a,0 0 0 9px rgba(58,90,154,.2);pointer-events:none;z-index:1001`;
+  const hand=document.getElementById('wt-hand');
+  hand.style.cssText=`display:block;position:fixed;left:${r.left+12}px;top:${r.bottom+4}px;font-size:26px;z-index:1003;pointer-events:none`;
+  const bubble=document.getElementById('wt-bubble');bubble.style.display='block';
+  let bx=r.left,by=r.bottom+48;
+  if(bx+260>window.innerWidth-10)bx=window.innerWidth-270;if(bx<10)bx=10;
+  if(by+160>window.innerHeight-10)by=r.top-170;if(by<10)by=10;
+  bubble.style.cssText=`display:block;position:fixed;left:${bx}px;top:${by}px;z-index:1002;background:#fff;border-radius:12px;padding:16px 18px;max-width:255px;box-shadow:0 6px 24px rgba(0,0,0,.15)`;
+}
+function wtNext(){if(wStep>=WT.length-1){wtSkip();return;}wtShow(wStep+1)}
+function wtSkip(){['wt-backdrop','wt-hl','wt-hand','wt-bubble'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='none';})}
+
+renderE();
+setTimeout(wtStart,600);
+</script>
+</body>
+</html>
