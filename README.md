@@ -1,2 +1,3 @@
 # Simple-present-expl
-interactive for my lms text course
+title: Simple present tense explorer.
+description: interactive for my lms text course.
