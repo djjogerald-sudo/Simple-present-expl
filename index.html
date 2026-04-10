@@ -14,606 +14,270 @@ body {
   min-height: 100vh;
   padding: 20px 0 40px;
 }
-
 :root {
-  --blue: #1950d1;
-  --blue-light: #3a6ef5;
-  --blue-dark: #0f35a0;
-  --red: #d11934;
-  --gold: #c9a227;
-  --gold-light: #f0c84a;
-  --white: #ffffff;
-  --bg-dark: #07101f;
-  --bg-card: rgba(255,255,255,0.06);
-  --border: rgba(255,255,255,0.12);
+  --blue: #1950d1; --blue-light: #3a6ef5; --blue-dark: #0f35a0;
+  --red: #d11934; --gold: #c9a227; --gold-light: #f0c84a;
+  --white: #ffffff; --bg-dark: #07101f; --border: rgba(255,255,255,0.12);
 }
 
-/* ===== UPLOAD SCREEN ===== */
+/* ── UPLOAD SCREEN ── */
 #upload-screen {
-  width: 390px;
-  background: #07101f;
-  border-radius: 32px;
-  border: 1.5px solid var(--border);
-  padding: 32px 24px;
-  text-align: center;
+  width: 390px; background: #07101f;
+  border-radius: 32px; border: 1.5px solid var(--border);
+  padding: 32px 24px; text-align: center;
 }
-#upload-screen h2 {
-  color: var(--white);
-  font-size: 20px;
-  font-weight: 800;
-  margin-bottom: 6px;
-}
-#upload-screen p {
-  color: rgba(255,255,255,0.5);
-  font-size: 12px;
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-.csv-schema {
-  background: rgba(25,80,209,0.15);
-  border: 1px solid rgba(25,80,209,0.4);
-  border-radius: 12px;
-  padding: 14px;
-  text-align: left;
-  margin-bottom: 18px;
-}
-.csv-schema .schema-title {
-  color: var(--gold-light);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.csv-schema code {
-  display: block;
-  color: rgba(255,255,255,0.7);
-  font-family: monospace;
-  font-size: 10px;
-  line-height: 1.8;
-}
-.drop-zone {
-  border: 2px dashed rgba(25,80,209,0.5);
-  border-radius: 14px;
-  padding: 24px 16px;
-  cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
-  margin-bottom: 14px;
-}
-.drop-zone:hover, .drop-zone.drag-over {
-  border-color: var(--blue-light);
-  background: rgba(25,80,209,0.1);
-}
-.drop-zone .dz-icon {
-  font-size: 32px;
-  margin-bottom: 8px;
-}
-.drop-zone p { color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 4px; }
+#upload-screen h2 { color: var(--white); font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+#upload-screen p  { color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 20px; line-height: 1.5; }
+.csv-schema { background: rgba(25,80,209,0.15); border: 1px solid rgba(25,80,209,0.4); border-radius: 12px; padding: 14px; text-align: left; margin-bottom: 18px; }
+.csv-schema .schema-title { color: var(--gold-light); font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.csv-schema code { display: block; color: rgba(255,255,255,0.7); font-family: monospace; font-size: 10px; line-height: 1.8; }
+.drop-zone { border: 2px dashed rgba(25,80,209,0.5); border-radius: 14px; padding: 20px 16px; cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 10px; }
+.drop-zone:hover, .drop-zone.drag-over { border-color: var(--blue-light); background: rgba(25,80,209,0.1); }
+.drop-zone .dz-icon { font-size: 28px; margin-bottom: 6px; }
+.drop-zone p { color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 3px; }
 .drop-zone strong { color: var(--white); font-size: 13px; display: block; }
 #file-input { display: none; }
-.or-divider {
-  color: rgba(255,255,255,0.3);
-  font-size: 11px;
-  margin: 12px 0;
-  position: relative;
-}
-.or-divider::before, .or-divider::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 40%;
-  height: 0.5px;
-  background: rgba(255,255,255,0.15);
-}
-.or-divider::before { left: 0; }
-.or-divider::after { right: 0; }
-.use-sample-btn {
-  background: rgba(201,162,39,0.15);
-  border: 1.5px solid rgba(201,162,39,0.4);
-  color: var(--gold-light);
-  font-size: 13px;
-  font-weight: 800;
-  padding: 12px 28px;
-  border-radius: 50px;
-  cursor: pointer;
-  width: 100%;
-  transition: background 0.2s;
-}
+
+/* ── AUDIO UPLOAD SECTION ── */
+.audio-section { margin: 14px 0 10px; text-align: left; }
+.audio-section-title { color: var(--gold-light); font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; display: block; text-align: center; }
+.audio-slots { display: flex; flex-direction: column; gap: 8px; }
+.audio-slot { background: rgba(255,255,255,0.04); border: 1.5px dashed rgba(255,255,255,0.15); border-radius: 12px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+.audio-slot:hover { border-color: rgba(25,80,209,0.5); background: rgba(25,80,209,0.08); }
+.audio-slot.loaded { border-style: solid; border-color: var(--gold); background: rgba(201,162,39,0.08); }
+.audio-slot-left { display: flex; align-items: center; gap: 10px; }
+.audio-icon { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.audio-icon.correct-icon { background: rgba(0,180,80,0.2); }
+.audio-icon.wrong-icon   { background: rgba(209,25,52,0.2); }
+.audio-icon.tick-icon    { background: rgba(25,80,209,0.2); }
+.audio-icon.buzzer-icon  { background: rgba(201,162,39,0.2); }
+.audio-icon.bg-icon      { background: rgba(255,255,255,0.1); }
+.audio-label { color: var(--white); font-size: 12px; font-weight: 700; }
+.audio-sub   { color: rgba(255,255,255,0.4); font-size: 10px; margin-top: 2px; }
+.audio-status { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.3); }
+.audio-status.ready { color: var(--gold-light); }
+.audio-file-input { display: none; }
+.preview-btn { background: none; border: none; color: rgba(255,255,255,0.4); font-size: 14px; cursor: pointer; padding: 4px; }
+.preview-btn:hover { color: var(--gold-light); }
+
+.or-divider { color: rgba(255,255,255,0.3); font-size: 11px; margin: 10px 0; position: relative; }
+.or-divider::before, .or-divider::after { content:''; position:absolute; top:50%; width:40%; height:0.5px; background:rgba(255,255,255,0.15); }
+.or-divider::before { left:0; } .or-divider::after { right:0; }
+.use-sample-btn { background: rgba(201,162,39,0.15); border: 1.5px solid rgba(201,162,39,0.4); color: var(--gold-light); font-size: 13px; font-weight: 800; padding: 12px 28px; border-radius: 50px; cursor: pointer; width: 100%; transition: background 0.2s; }
 .use-sample-btn:hover { background: rgba(201,162,39,0.25); }
 .error-msg { color: var(--red); font-size: 12px; margin-top: 10px; min-height: 16px; }
 
-/* ===== PHONE FRAME ===== */
-#phone {
-  width: 390px;
-  min-height: 820px;
-  background: #07101f;
-  border-radius: 0px;
-  border: 2px solid var(--border);
-  overflow: hidden;
-  position: relative;
-  display: none;
-  flex-direction: column;
-}
+/* ── PHONE FRAME ── */
+#phone { width: 390px; min-height: 820px; background: #07101f; border-radius: 32px; border: 1.5px solid var(--border); overflow: hidden; position: relative; display: none; flex-direction: column; }
+.bg-anim { position:absolute; inset:0; background:#07101f; z-index:0; }
+.bg-glow { position:absolute; width:300px; height:300px; border-radius:50%; filter:blur(80px); opacity:0.18; pointer-events:none; }
+.glow-blue { background:var(--blue); top:-80px; left:-60px; }
+.glow-red  { background:var(--red);  bottom:-80px; right:-60px; }
+.particle  { position:absolute; border-radius:50%; opacity:0; animation:rise linear infinite; pointer-events:none; z-index:1; }
+@keyframes rise { 0%{transform:translateY(850px);opacity:0} 10%{opacity:0.45} 90%{opacity:0.2} 100%{transform:translateY(-50px);opacity:0} }
+.ui { position:relative; z-index:10; display:flex; flex-direction:column; padding:20px 20px 28px; }
+.top-bar { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.brand-badge { display:flex; align-items:center; gap:6px; }
+.brand-dot { width:8px; height:8px; border-radius:50%; background:var(--gold); }
+.brand-name { color:var(--white); font-size:12px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; }
+.score-pill { background:rgba(25,80,209,0.3); border:1.5px solid rgba(25,80,209,0.6); color:var(--white); font-size:12px; font-weight:800; padding:4px 14px; border-radius:50px; }
+.streak-val { color:var(--gold-light); font-size:13px; font-weight:900; min-width:30px; text-align:right; }
+.timer-track { height:5px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; margin-bottom:12px; }
+#timer-bar { height:100%; width:100%; background:var(--blue); border-radius:3px; transition:width 1s linear, background 0.5s; }
+.cc-strip { background:rgba(0,0,0,0.6); border-radius:8px; padding:5px 12px; margin-bottom:10px; text-align:center; }
+.cc-text { color:var(--white); font-size:11px; font-weight:800; letter-spacing:1px; text-transform:uppercase; }
+.cc-text .cc-hi { color:var(--gold-light); }
+.meta-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.type-badge { background:linear-gradient(135deg,var(--blue-dark),var(--blue)); color:var(--white); font-size:9px; font-weight:900; padding:4px 12px; border-radius:50px; letter-spacing:1.5px; text-transform:uppercase; }
+.level-badge { background:rgba(201,162,39,0.2); border:1px solid rgba(201,162,39,0.5); color:var(--gold-light); font-size:9px; font-weight:900; padding:4px 10px; border-radius:50px; letter-spacing:1px; }
+.qnum { color:rgba(255,255,255,0.4); font-size:10px; font-weight:700; }
+.question-card { background:rgba(255,255,255,0.07); border:1.5px solid rgba(255,255,255,0.14); border-radius:20px; padding:20px 18px 16px; text-align:center; margin-bottom:14px; }
+.sentence { font-size:19px; font-weight:900; color:var(--white); line-height:1.5; }
+.blank { color:var(--gold-light); border-bottom:2.5px solid var(--gold); padding:0 6px; min-width:60px; display:inline-block; }
+#options { display:flex; flex-direction:column; gap:10px; margin-bottom:12px; }
+.opt-btn { background:rgba(255,255,255,0.07); border:2px solid rgba(255,255,255,0.16); color:var(--white); border-radius:14px; font-size:16px; font-weight:800; padding:14px 18px; text-align:left; cursor:pointer; transition:border-color 0.15s, background 0.15s; display:flex; align-items:center; gap:12px; width:100%; }
+.opt-btn:hover:not(:disabled) { border-color:rgba(25,80,209,0.6); background:rgba(25,80,209,0.12); }
+.opt-label { width:26px; height:26px; border-radius:50%; background:rgba(255,255,255,0.1); border:1.5px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:900; flex-shrink:0; color:rgba(255,255,255,0.7); transition:background 0.2s, border-color 0.2s, color 0.2s; }
 
-/* BG ANIMATION */
-.bg-anim {
-  position: absolute;
-  inset: 0;
-  background: #07101f;
-  z-index: 0;
-}
-.bg-glow {
-  position: absolute;
-  width: 300px; height: 300px;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.18;
-  pointer-events: none;
-}
-.glow-blue { background: var(--blue); top: -80px; left: -60px; }
-.glow-red  { background: var(--red);  bottom: -80px; right: -60px; }
-
-/* PARTICLES */
-.particle {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0;
-  animation: rise linear infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-@keyframes rise {
-  0%   { transform: translateY(850px); opacity: 0; }
-  10%  { opacity: 0.45; }
-  90%  { opacity: 0.2; }
-  100% { transform: translateY(-50px); opacity: 0; }
-}
-
-/* UI LAYER */
-.ui {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  padding: 20px 20px 28px;
-}
-
-/* TOP BAR */
-.top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-.brand-badge {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.brand-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--gold);
-}
-.brand-name {
-  color: var(--white);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-.score-pill {
-  background: rgba(25,80,209,0.3);
-  border: 1.5px solid rgba(25,80,209,0.6);
-  color: var(--white);
-  font-size: 12px;
-  font-weight: 800;
-  padding: 4px 14px;
-  border-radius: 50px;
-}
-.streak-val {
-  color: var(--gold-light);
-  font-size: 13px;
-  font-weight: 900;
-  min-width: 30px;
-  text-align: right;
-}
-
-/* TIMER */
-.timer-track {
-  height: 5px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-bottom: 12px;
-}
-#timer-bar {
-  height: 100%;
-  width: 100%;
-  background: var(--blue);
-  border-radius: 3px;
-  transition: width 1s linear, background 0.5s;
-}
-
-/* CC STRIP */
-.cc-strip {
-  background: rgba(0,0,0,0.6);
-  border-radius: 8px;
-  padding: 5px 12px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-.cc-text {
-  color: var(--white);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-.cc-text .cc-hi { color: var(--gold-light); }
-
-/* META ROW */
-.meta-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-.type-badge {
-  background: linear-gradient(135deg, var(--blue-dark), var(--blue));
-  color: var(--white);
-  font-size: 9px;
-  font-weight: 900;
-  padding: 4px 12px;
-  border-radius: 50px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-.level-badge {
-  background: rgba(201,162,39,0.2);
-  border: 1px solid rgba(201,162,39,0.5);
-  color: var(--gold-light);
-  font-size: 9px;
-  font-weight: 900;
-  padding: 4px 10px;
-  border-radius: 50px;
-  letter-spacing: 1px;
-}
-.qnum {
-  color: rgba(255,255,255,0.4);
-  font-size: 0px;
-  font-weight: 100;
-}
-
-/* QUESTION CARD */
-.question-card {
-  background: rgba(255,255,255,0.07);
-  border: 1.5px solid rgba(255,255,255,0.14);
-  border-radius: 20px;
-  padding: 25px 18px 25px;
-  text-align: center;
-  margin-bottom: 30px;
-}
-.sentence {
-  font-size: 19px;
-  font-weight: 900;
-  color: var(--white);
-  line-height: 1.5;
-}
-.blank {
-  color: var(--gold-light);
-  border-bottom: 2.5px solid var(--gold);
-  padding: 0 6px;
-  min-width: 60px;
-  display: inline-block;
-}
-
-/* OPTIONS — 1 column */
-#options {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-.opt-btn {
-  background: rgba(255,255,255,0.07);
-  border: 2px solid rgba(255,255,255,0.16);
-  color: var(--white);
-  border-radius: 14px;
-  font-size: 16px;
-  font-weight: 800;
-  padding: 14px 18px;
-  text-align: left;
-  cursor: pointer;
-  transition: border-color 0.15s, background 0.15s;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-}
-.opt-btn:hover:not(:disabled) {
-  border-color: rgba(25,80,209,0.6);
-  background: rgba(25,80,209,0.12);
-}
-.opt-label {
-  width: 26px; height: 26px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  border: 1.5px solid rgba(255,255,255,0.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px;
-  font-weight: 900;
-  flex-shrink: 0;
-  color: rgba(255,255,255,0.7);
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
-}
-
-/* CORRECT animation */
-.opt-btn.correct {
-  border-color: var(--gold);
-  background: rgba(201,162,39,0.18);
-  animation: correctGlow 0.6s ease forwards;
-}
-.opt-btn.correct .opt-label {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: #000;
-}
+.opt-btn.correct { border-color:var(--gold); background:rgba(201,162,39,0.18); animation:correctGlow 0.7s ease forwards; }
+.opt-btn.correct .opt-label { background:var(--gold); border-color:var(--gold); color:#000; }
 @keyframes correctGlow {
-  0%  { box-shadow: 0 0 0 0 rgba(201,162,39,0); transform: scale(1); }
-  30% { box-shadow: 0 0 0 6px rgba(201,162,39,0.3); transform: scale(1.025); }
-  60% { box-shadow: 0 0 0 10px rgba(201,162,39,0.12); transform: scale(1.015); }
-  100%{ box-shadow: 0 0 0 4px rgba(201,162,39,0.08); transform: scale(1); }
+  0%  { box-shadow:0 0 0 0 rgba(201,162,39,0); transform:scale(1); }
+  30% { box-shadow:0 0 0 8px rgba(201,162,39,0.35); transform:scale(1.03); }
+  60% { box-shadow:0 0 0 14px rgba(201,162,39,0.12); transform:scale(1.015); }
+  100%{ box-shadow:0 0 0 5px rgba(201,162,39,0.06); transform:scale(1); }
 }
+.opt-btn.wrong { border-color:var(--red); background:rgba(209,25,52,0.15); animation:shake 0.45s ease; }
+.opt-btn.wrong .opt-label { background:var(--red); border-color:var(--red); color:#fff; }
+@keyframes shake { 0%{transform:translateX(0)} 15%{transform:translateX(-7px)} 30%{transform:translateX(6px)} 45%{transform:translateX(-4px)} 60%{transform:translateX(3px)} 75%{transform:translateX(-2px)} 100%{transform:translateX(0)} }
 
-/* WRONG animation */
-.opt-btn.wrong {
-  border-color: var(--red);
-  background: rgba(209,25,52,0.15);
-  animation: shake 0.45s ease;
-}
-.opt-btn.wrong .opt-label {
-  background: var(--red);
-  border-color: var(--red);
-  color: #fff;
-}
-@keyframes shake {
-  0%   { transform: translateX(0); }
-  15%  { transform: translateX(-6px); }
-  30%  { transform: translateX(5px); }
-  45%  { transform: translateX(-4px); }
-  60%  { transform: translateX(3px); }
-  75%  { transform: translateX(-2px); }
-  100% { transform: translateX(0); }
-}
-
-/* FEEDBACK */
-#feedback {
-  text-align: center;
-  font-size: 14px;
-  font-weight: 800;
-  min-height: 20px;
-  color: var(--white);
-  letter-spacing: 0.3px;
-}
-#explanation-box {
-  background: rgba(25,80,209,0.15);
-  border: 1px solid rgba(25,80,209,0.35);
-  border-radius: 10px;
-  padding: 10px 14px;
-  margin-top: 8px;
-  font-size: 12px;
-  color: rgba(255,255,255,0.75);
-  line-height: 1.5;
-  display: none;
-}
-
-/* PROGRESS DOTS */
-.progress-row {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  margin-top: 14px;
-  flex-wrap: wrap;
-}
-.dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.15);
-  transition: background 0.3s, transform 0.3s;
-}
-.dot.done  { background: var(--gold); }
-.dot.active { background: var(--white); transform: scale(1.3); }
-.dot.wrong-done { background: var(--red); }
-
-/* COMBO TOAST */
-#combo-toast {
-  position: absolute;
-  top: 90px; left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(135deg, var(--gold), #e8a020);
-  color: #000;
-  font-size: 16px;
-  font-weight: 900;
-  padding: 8px 24px;
-  border-radius: 50px;
-  z-index: 50;
-  opacity: 0;
-  pointer-events: none;
-  white-space: nowrap;
-  transition: opacity 0.25s;
-}
-#combo-toast.show {
-  opacity: 1;
-  animation: toastPop 0.35s ease;
-}
-@keyframes toastPop {
-  0%  { transform: translateX(-50%) scale(0.5); }
-  65% { transform: translateX(-50%) scale(1.1); }
-  100%{ transform: translateX(-50%) scale(1); }
-}
-
-/* END SCREEN */
-#end-screen {
-  position: absolute; inset: 0; z-index: 30;
-  background: rgba(7,16,31,0.95);
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 24px;
-  text-align: center;
-}
-#end-screen h2 { color: var(--white); font-size: 26px; font-weight: 900; margin: 12px 0 8px; }
-#end-screen p { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
-.end-score-ring {
-  width: 100px; height: 100px;
-  border-radius: 50%;
-  border: 4px solid var(--gold);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  background: rgba(201,162,39,0.1);
-}
-.end-score-ring .big-num { color: var(--gold-light); font-size: 30px; font-weight: 900; }
-.end-score-ring .out-of { color: rgba(255,255,255,0.4); font-size: 12px; }
-.play-again-btn {
-  background: linear-gradient(135deg, var(--blue), var(--blue-light));
-  border: none;
-  color: var(--white);
-  font-size: 15px;
-  font-weight: 900;
-  padding: 14px 44px;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: transform 0.15s;
-}
-.play-again-btn:hover { transform: scale(1.04); }
-
-/* START SCREEN */
-#start-screen {
-  position: absolute; inset: 0; z-index: 30;
-  background: rgba(7,16,31,0.97);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 24px;
-  text-align: center;
-}
-.start-logo {
-  width: 64px; height: 64px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, var(--blue-dark), var(--blue));
-  border: 2px solid var(--gold);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px;
-}
-.start-logo span { font-size: 28px; }
-#start-screen h1 { color: var(--white); font-size: 24px; font-weight: 900; margin-bottom: 6px; }
-#quiz-subtitle { color: rgba(255,255,255,0.55); font-size: 13px; margin-bottom: 6px; }
-#quiz-count { color: var(--gold-light); font-size: 12px; font-weight: 700; margin-bottom: 24px; }
-.start-btn {
-  background: linear-gradient(135deg, var(--blue), var(--blue-light));
-  border: none;
-  color: var(--white);
-  font-size: 16px;
-  font-weight: 900;
-  padding: 16px 52px;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: transform 0.15s;
-  letter-spacing: 0.5px;
-}
-.start-btn:hover { transform: scale(1.04); }
-.gold-line {
-  width: 60px; height: 2px;
-  background: var(--gold);
-  border-radius: 1px;
-  margin: 14px auto;
-}
-
-.hidden { display: none !important; }
+#feedback { text-align:center; font-size:14px; font-weight:800; min-height:20px; color:var(--white); letter-spacing:0.3px; }
+#explanation-box { background:rgba(25,80,209,0.15); border:1px solid rgba(25,80,209,0.35); border-radius:10px; padding:10px 14px; margin-top:8px; font-size:12px; color:rgba(255,255,255,0.75); line-height:1.5; display:none; }
+.progress-row { display:flex; justify-content:center; gap:6px; margin-top:14px; flex-wrap:wrap; }
+.dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.15); transition:background 0.3s, transform 0.3s; }
+.dot.done { background:var(--gold); } .dot.active { background:var(--white); transform:scale(1.3); } .dot.wrong-done { background:var(--red); }
+#combo-toast { position:absolute; top:90px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,var(--gold),#e8a020); color:#000; font-size:16px; font-weight:900; padding:8px 24px; border-radius:50px; z-index:50; opacity:0; pointer-events:none; white-space:nowrap; transition:opacity 0.25s; }
+#combo-toast.show { opacity:1; animation:toastPop 0.35s ease; }
+@keyframes toastPop { 0%{transform:translateX(-50%) scale(0.5)} 65%{transform:translateX(-50%) scale(1.1)} 100%{transform:translateX(-50%) scale(1)} }
+#end-screen { position:absolute; inset:0; z-index:30; background:rgba(7,16,31,0.95); display:none; flex-direction:column; align-items:center; justify-content:center; padding:30px 24px; text-align:center; }
+#end-screen h2 { color:var(--white); font-size:26px; font-weight:900; margin:12px 0 8px; }
+#end-screen p { color:rgba(255,255,255,0.6); font-size:14px; line-height:1.6; margin-bottom:24px; }
+.end-score-ring { width:100px; height:100px; border-radius:50%; border:4px solid var(--gold); display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(201,162,39,0.1); }
+.end-score-ring .big-num { color:var(--gold-light); font-size:30px; font-weight:900; }
+.end-score-ring .out-of  { color:rgba(255,255,255,0.4); font-size:12px; }
+.play-again-btn { background:linear-gradient(135deg,var(--blue),var(--blue-light)); border:none; color:var(--white); font-size:15px; font-weight:900; padding:14px 44px; border-radius:50px; cursor:pointer; transition:transform 0.15s; }
+.play-again-btn:hover { transform:scale(1.04); }
+#start-screen { position:absolute; inset:0; z-index:30; background:rgba(7,16,31,0.97); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:30px 24px; text-align:center; }
+.start-logo { width:64px; height:64px; border-radius:16px; background:linear-gradient(135deg,var(--blue-dark),var(--blue)); border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
+.start-logo span { font-size:28px; }
+#start-screen h1 { color:var(--white); font-size:24px; font-weight:900; margin-bottom:6px; }
+#quiz-subtitle { color:rgba(255,255,255,0.55); font-size:13px; margin-bottom:6px; }
+#quiz-count { color:var(--gold-light); font-size:12px; font-weight:700; margin-bottom:24px; }
+.start-btn { background:linear-gradient(135deg,var(--blue),var(--blue-light)); border:none; color:var(--white); font-size:16px; font-weight:900; padding:16px 52px; border-radius:50px; cursor:pointer; transition:transform 0.15s; letter-spacing:0.5px; }
+.start-btn:hover { transform:scale(1.04); }
+.gold-line { width:60px; height:2px; background:var(--gold); border-radius:1px; margin:14px auto; }
 </style>
 </head>
 <body>
 
 <!-- UPLOAD SCREEN -->
 <div id="upload-screen">
-  <h2>Angloskill quiz Creator</h2>
-  <p>Upload your CSV/TSV to build a custom quiz, or try the sample below</p>
+  <h2>Quiz Creator</h2>
+  <p>Upload your CSV/TSV, add optional custom audio, then launch</p>
 
   <div class="csv-schema">
-    <div class="schema-title">Required columns (CSV or TSV)</div>
+    <div class="schema-title">Required CSV / TSV columns</div>
     <code>Question</code>
     <code>Topic</code>
     <code>Level</code>
     <code>Explanation</code>
     <code>Correct Option &nbsp;← 1, 2, 3, or 4</code>
-    <code>Option 1</code>
-    <code>Option 2</code>
-    <code>Option 3</code>
-    <code>Option 4</code>
+    <code>Option 1 &nbsp;Option 2 &nbsp;Option 3 &nbsp;Option 4</code>
   </div>
 
   <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
     <div class="dz-icon">📂</div>
-    <strong>Click or drop your CSV / TSV here</strong>
+    <strong>Click or drop CSV / TSV here</strong>
     <p>Supports .csv and .tsv files</p>
   </div>
   <input type="file" id="file-input" accept=".csv,.tsv,.txt">
 
-  <div class="or-divider">or</div>
+  <!-- AUDIO UPLOAD SLOTS -->
+  <div class="audio-section">
+    <span class="audio-section-title">Custom Audio (optional)</span>
+    <div class="audio-slots">
 
+      <div class="audio-slot" id="slot-correct" onclick="document.getElementById('aud-correct').click()" title="Plays when correct answer is revealed">
+        <div class="audio-slot-left">
+          <div class="audio-icon correct-icon">✓</div>
+          <div>
+            <div class="audio-label">Correct sound</div>
+            <div class="audio-sub">Plays on right answer reveal</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <button class="preview-btn" id="prev-correct" onclick="previewAudio(event,'correct')" title="Preview">▶</button>
+          <div class="audio-status" id="stat-correct">No file</div>
+        </div>
+      </div>
+      <input type="file" class="audio-file-input" id="aud-correct" accept="audio/*">
+
+      <div class="audio-slot" id="slot-wrong" onclick="document.getElementById('aud-wrong').click()" title="Plays on wrong answer">
+        <div class="audio-slot-left">
+          <div class="audio-icon wrong-icon">✕</div>
+          <div>
+            <div class="audio-label">Wrong sound</div>
+            <div class="audio-sub">Plays on incorrect answer</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <button class="preview-btn" id="prev-wrong" onclick="previewAudio(event,'wrong')" title="Preview">▶</button>
+          <div class="audio-status" id="stat-wrong">No file</div>
+        </div>
+      </div>
+      <input type="file" class="audio-file-input" id="aud-wrong" accept="audio/*">
+
+      <div class="audio-slot" id="slot-tick" onclick="document.getElementById('aud-tick').click()" title="Plays each second in last 3s">
+        <div class="audio-slot-left">
+          <div class="audio-icon tick-icon">⏱</div>
+          <div>
+            <div class="audio-label">Tick sound</div>
+            <div class="audio-sub">Last 3 seconds countdown</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <button class="preview-btn" id="prev-tick" onclick="previewAudio(event,'tick')" title="Preview">▶</button>
+          <div class="audio-status" id="stat-tick">No file</div>
+        </div>
+      </div>
+      <input type="file" class="audio-file-input" id="aud-tick" accept="audio/*">
+
+      <div class="audio-slot" id="slot-buzzer" onclick="document.getElementById('aud-buzzer').click()" title="Plays on timeout">
+        <div class="audio-slot-left">
+          <div class="audio-icon buzzer-icon">⚡</div>
+          <div>
+            <div class="audio-label">Buzzer / timeout</div>
+            <div class="audio-sub">Plays when timer hits zero</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <button class="preview-btn" id="prev-buzzer" onclick="previewAudio(event,'buzzer')" title="Preview">▶</button>
+          <div class="audio-status" id="stat-buzzer">No file</div>
+        </div>
+      </div>
+      <input type="file" class="audio-file-input" id="aud-buzzer" accept="audio/*">
+
+      <div class="audio-slot" id="slot-bg" onclick="document.getElementById('aud-bg').click()" title="Background music (loops)">
+        <div class="audio-slot-left">
+          <div class="audio-icon bg-icon">♪</div>
+          <div>
+            <div class="audio-label">Background music</div>
+            <div class="audio-sub">Loops during the whole quiz</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <button class="preview-btn" id="prev-bg" onclick="previewAudio(event,'bg')" title="Preview">▶</button>
+          <div class="audio-status" id="stat-bg">No file</div>
+        </div>
+      </div>
+      <input type="file" class="audio-file-input" id="aud-bg" accept="audio/*">
+
+    </div>
+  </div>
+
+  <div class="or-divider">or</div>
   <button class="use-sample-btn" onclick="loadSample()">Use sample questions</button>
   <div class="error-msg" id="error-msg"></div>
 </div>
 
-<!-- PHONE FRAME (quiz) -->
+<!-- PHONE FRAME -->
 <div id="phone">
   <div class="bg-anim">
     <div class="bg-glow glow-blue"></div>
     <div class="bg-glow glow-red"></div>
   </div>
-
   <div id="combo-toast"></div>
-
   <div class="ui">
     <div class="top-bar">
-      <div class="brand-badge">
-        <div class="brand-dot"></div>
-        <div class="brand-name">Angloskill Quiz</div>
-      </div>
+      <div class="brand-badge"><div class="brand-dot"></div><div class="brand-name">Quiz</div></div>
       <div class="score-pill">Score: <span id="score-val">0</span></div>
       <div class="streak-val" id="streak-val"></div>
     </div>
-
-    <div class="timer-track">
-      <div id="timer-bar"></div>
-    </div>
-
-    <div class="cc-strip">
-      <div class="cc-text" id="cc-text">FILL THE BLANK!</div>
-    </div>
-
+    <div class="timer-track"><div id="timer-bar"></div></div>
+    <div class="cc-strip"><div class="cc-text" id="cc-text">FILL THE BLANK!</div></div>
     <div class="meta-row">
       <div class="type-badge" id="type-badge">Topic</div>
       <div class="qnum" id="qnum">1 / 1</div>
       <div class="level-badge" id="level-badge">A1</div>
     </div>
-
     <div class="question-card">
       <div class="sentence" id="sentence-box">—</div>
     </div>
-
     <div id="options"></div>
-
     <div id="feedback"></div>
     <div id="explanation-box"></div>
-
     <div class="progress-row" id="progress-dots"></div>
   </div>
-
-  <!-- START SCREEN -->
   <div id="start-screen">
     <div class="start-logo"><span>🧠</span></div>
     <h1>Grammar Quest</h1>
@@ -622,8 +286,6 @@ body {
     <div id="quiz-count"></div>
     <button class="start-btn" onclick="startGame()">Start Quiz</button>
   </div>
-
-  <!-- END SCREEN -->
   <div id="end-screen">
     <div class="end-score-ring">
       <div class="big-num" id="end-num">0</div>
@@ -635,6 +297,13 @@ body {
   </div>
 </div>
 
+<!-- Hidden audio elements (populated from uploaded files or synth fallback) -->
+<audio id="sfx-correct" preload="auto"></audio>
+<audio id="sfx-wrong"   preload="auto"></audio>
+<audio id="sfx-tick"    preload="auto"></audio>
+<audio id="sfx-buzzer"  preload="auto"></audio>
+<audio id="sfx-bg"      preload="auto" loop></audio>
+
 <script>
 const SAMPLE_CSV = `Question,Topic,Level,Explanation,Correct Option,Option 1,Option 2,Option 3,Option 4
 My sister ______ an apple every day.,Simple Tenses,A1,For third-person singular (he/she/it) we add -s to the verb.,1,eats,eat,eating,to eat
@@ -643,8 +312,117 @@ The cat ______ on the sofa.,Simple Tenses,A1,With a singular noun (the cat) we u
 I like apples ______ oranges.,Conjunctions,A1,Use 'and' to connect two similar things.,1,and,but,or,because
 She stayed home ______ it was raining.,Conjunctions,A2,Use 'because' to give a reason.,1,because,but,until,and`;
 
-let questions = [], idx = 0, score = 0, streak = 0, timeLeft = 10, timerId, canAnswer = true, audioCtx;
+let questions = [], idx = 0, score = 0, streak = 0, timeLeft = 10, timerId, canAnswer = true;
+let audioCtx;
 
+/* ── AUDIO OBJECT URLS ── */
+const audioURLs = { correct: null, wrong: null, tick: null, buzzer: null, bg: null };
+const audioEls  = {
+  correct: document.getElementById('sfx-correct'),
+  wrong:   document.getElementById('sfx-wrong'),
+  tick:    document.getElementById('sfx-tick'),
+  buzzer:  document.getElementById('sfx-buzzer'),
+  bg:      document.getElementById('sfx-bg')
+};
+let previewPlaying = null;
+
+/* ── AUDIO SLOT WIRING ── */
+['correct','wrong','tick','buzzer','bg'].forEach(key => {
+  const input = document.getElementById('aud-' + key);
+  input.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (audioURLs[key]) URL.revokeObjectURL(audioURLs[key]);
+    audioURLs[key] = URL.createObjectURL(file);
+    audioEls[key].src = audioURLs[key];
+    document.getElementById('slot-' + key).classList.add('loaded');
+    const stat = document.getElementById('stat-' + key);
+    stat.textContent = file.name.length > 16 ? file.name.slice(0,14) + '…' : file.name;
+    stat.classList.add('ready');
+    e.target.value = '';
+  });
+});
+
+function previewAudio(e, key) {
+  e.stopPropagation();
+  const el = audioEls[key];
+  if (!audioURLs[key]) {
+    synthPlay(key);
+    return;
+  }
+  if (previewPlaying && previewPlaying !== el) {
+    previewPlaying.pause();
+    previewPlaying.currentTime = 0;
+  }
+  if (el.paused) {
+    el.currentTime = 0;
+    el.play().catch(() => {});
+    previewPlaying = el;
+    const btn = document.getElementById('prev-' + key);
+    btn.textContent = '■';
+    el.onended = () => { btn.textContent = '▶'; };
+  } else {
+    el.pause(); el.currentTime = 0;
+    document.getElementById('prev-' + key).textContent = '▶';
+  }
+}
+
+/* ── SYNTH FALLBACK ── */
+function initCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+}
+function synthTone(freq, type, dur, vol, delay) {
+  initCtx();
+  const t = audioCtx.currentTime + (delay || 0);
+  const osc = audioCtx.createOscillator();
+  const g   = audioCtx.createGain();
+  osc.type = type || 'sine';
+  osc.frequency.setValueAtTime(freq, t);
+  g.gain.setValueAtTime(vol || 0.15, t);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  osc.connect(g); g.connect(audioCtx.destination);
+  osc.start(t); osc.stop(t + dur);
+}
+function synthPlay(key) {
+  switch (key) {
+    case 'correct':
+      synthTone(523,'sine',0.12,0.18,0);
+      synthTone(659,'sine',0.12,0.18,0.1);
+      synthTone(784,'sine',0.22,0.18,0.22);
+      break;
+    case 'wrong':
+      synthTone(220,'sawtooth',0.22,0.1,0);
+      synthTone(180,'sawtooth',0.22,0.1,0.15);
+      break;
+    case 'tick':
+      synthTone(880,'sine',0.06,0.05,0);
+      break;
+    case 'buzzer':
+      synthTone(120,'sawtooth',0.45,0.1,0);
+      break;
+    case 'bg':
+      break;
+  }
+}
+
+/* ── PLAY HELPER: file if available, else synth ── */
+function playSound(key) {
+  if (audioURLs[key]) {
+    initCtx();
+    const el = audioEls[key];
+    if (key !== 'bg') { el.currentTime = 0; }
+    el.play().catch(() => synthPlay(key));
+  } else {
+    synthPlay(key);
+  }
+}
+function stopSound(key) {
+  const el = audioEls[key];
+  el.pause(); el.currentTime = 0;
+}
+
+/* ── CSV PARSING ── */
 function parseCSV(text) {
   const lines = text.trim().split(/\r?\n/);
   const sep = lines[0].includes('\t') ? '\t' : ',';
@@ -653,79 +431,72 @@ function parseCSV(text) {
   for (let i = 1; i < lines.length; i++) {
     if (!lines[i].trim()) continue;
     const vals = smartSplit(lines[i], sep);
-    if (vals.length < 9) continue;
+    if (vals.length < 6) continue;
     const r = {};
-    headers.forEach((h,j) => r[h] = (vals[j]||'').trim().replace(/^"|"$/g,''));
+    headers.forEach((h, j) => r[h] = (vals[j]||'').trim().replace(/^"|"$/g,''));
     rows.push(r);
   }
   return rows;
 }
-
 function smartSplit(line, sep) {
   const result = []; let cur = ''; let inQ = false;
   for (let i = 0; i < line.length; i++) {
-    if (line[i] === '"') { inQ = !inQ; continue; }
-    if (line[i] === sep && !inQ) { result.push(cur); cur = ''; continue; }
-    cur += line[i];
+    const c = line[i];
+    if (c === '"') { inQ = !inQ; continue; }
+    if (c === sep && !inQ) { result.push(cur); cur = ''; continue; }
+    cur += c;
   }
   result.push(cur);
   return result;
 }
-
 function rowsToQuestions(rows) {
   return rows.map(r => {
     const opts = [r['Option 1'], r['Option 2'], r['Option 3'], r['Option 4']].filter(Boolean);
-    const correctIdx = parseInt(r['Correct Option'] || '1') - 1;
+    const ci = parseInt(r['Correct Option']||'1') - 1;
     return {
-      sentence: r['Question'] || '',
-      topic: r['Topic'] || '',
-      level: r['Level'] || '',
-      explanation: r['Explanation'] || '',
-      correct: opts[correctIdx] || opts[0],
-      options: opts
+      sentence:    r['Question']||'',
+      topic:       r['Topic']||'',
+      level:       r['Level']||'',
+      explanation: r['Explanation']||'',
+      correct:     opts[Math.max(0, Math.min(ci, opts.length-1))] || opts[0],
+      options:     opts
     };
   }).filter(q => q.sentence && q.options.length > 0);
 }
 
 function loadSample() {
-  const rows = parseCSV(SAMPLE_CSV);
-  questions = rowsToQuestions(rows);
+  questions = rowsToQuestions(parseCSV(SAMPLE_CSV));
   if (!questions.length) return showError('Could not parse sample.');
   launchQuiz();
 }
+function showError(msg) { document.getElementById('error-msg').textContent = msg; }
 
-function showError(msg) {
-  document.getElementById('error-msg').textContent = msg;
-}
-
+/* file input */
 document.getElementById('file-input').addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if (!file) return;
+  const file = e.target.files[0]; if (!file) return;
   const reader = new FileReader();
   reader.onload = ev => {
     try {
-      const rows = parseCSV(ev.target.result);
-      questions = rowsToQuestions(rows);
-      if (!questions.length) return showError('No valid rows found. Check column names.');
+      questions = rowsToQuestions(parseCSV(ev.target.result));
+      if (!questions.length) return showError('No valid rows. Check column names.');
       launchQuiz();
     } catch(err) { showError('Parse error: ' + err.message); }
   };
   reader.readAsText(file);
 });
 
+/* drag-drop */
 const dz = document.getElementById('drop-zone');
 dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
 dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
 dz.addEventListener('drop', e => {
   e.preventDefault(); dz.classList.remove('drag-over');
-  const file = e.dataTransfer.files[0];
-  if (!file) return;
+  const file = e.dataTransfer.files[0]; if (!file) return;
   const reader = new FileReader();
   reader.onload = ev => {
     try {
-      const rows = parseCSV(ev.target.result);
-      questions = rowsToQuestions(rows);
-      if (!questions.length) return showError('No valid rows found.');
+      questions = rowsToQuestions(parseCSV(ev.target.result));
+      if (!questions.length) return showError('No valid rows.');
       launchQuiz();
     } catch(err) { showError('Parse error: ' + err.message); }
   };
@@ -747,46 +518,21 @@ function spawnParticles() {
   for (let i = 0; i < 18; i++) {
     const p = document.createElement('div');
     p.className = 'particle';
-    const size = 3 + Math.random() * 7;
-    p.style.cssText = `width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};left:${Math.random()*100}%;animation-duration:${5+Math.random()*9}s;animation-delay:${Math.random()*9}s;`;
+    const s = 3 + Math.random()*7;
+    p.style.cssText = `width:${s}px;height:${s}px;background:${colors[Math.floor(Math.random()*colors.length)]};left:${Math.random()*100}%;animation-duration:${5+Math.random()*9}s;animation-delay:${Math.random()*9}s;`;
     frame.appendChild(p);
   }
 }
 
-function initAudio() {
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-}
-function playTone(freq, type, dur, vol, delay) {
-  if (!audioCtx) return;
-  const t = audioCtx.currentTime + (delay||0);
-  const osc = audioCtx.createOscillator();
-  const g = audioCtx.createGain();
-  osc.type = type || 'sine';
-  osc.frequency.setValueAtTime(freq, t);
-  g.gain.setValueAtTime(vol||0.15, t);
-  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-  osc.connect(g); g.connect(audioCtx.destination);
-  osc.start(t); osc.stop(t + dur);
-}
-function playCorrect() {
-  playTone(523,'sine',0.12,0.18,0);
-  playTone(659,'sine',0.12,0.18,0.1);
-  playTone(784,'sine',0.2,0.18,0.2);
-}
-function playWrong() {
-  playTone(220,'sawtooth',0.25,0.1,0);
-  playTone(180,'sawtooth',0.25,0.1,0.14);
-}
-function playTick() { playTone(880,'sine',0.04,0.04,0); }
-function playBuzzer() { playTone(120,'sawtooth',0.45,0.09,0); }
-
+/* ── GAME ── */
 function startGame() {
-  initAudio();
+  initCtx();
   idx = 0; score = 0; streak = 0;
   document.getElementById('start-screen').style.display = 'none';
   document.getElementById('end-screen').style.display = 'none';
   document.getElementById('score-val').textContent = '0';
   buildDots();
+  if (audioURLs.bg) playSound('bg');
   loadQuestion();
 }
 
@@ -801,42 +547,37 @@ function buildDots() {
   });
 }
 
+const ccMessages = ['PICK THE CORRECT ANSWER!','DID YOU GET IT RIGHT?','KEEP YOUR STREAK GOING!','ALMOST THERE!','FINAL PUSH!'];
+
 function loadQuestion() {
   if (idx >= questions.length) return showEnd();
   canAnswer = true;
   const q = questions[idx];
-
   document.getElementById('type-badge').textContent = q.topic || 'Grammar';
   document.getElementById('level-badge').textContent = q.level || '';
   document.getElementById('qnum').textContent = (idx+1) + ' / ' + questions.length;
-
-  const ccMessages = ['PICK THE CORRECT ANSWER!','DID YOU GET IT RIGHT?','KEEP YOUR STREAK GOING!','ALMOST THERE!','FINAL PUSH!'];
-  const ccEl = document.getElementById('cc-text');
   const msg = ccMessages[idx % ccMessages.length];
-  ccEl.innerHTML = msg.replace('CORRECT', '<span class="cc-hi">CORRECT</span>').replace('STREAK', '<span class="cc-hi">STREAK</span>');
-
-  const sentence = q.sentence;
-  const display = sentence.includes('______')
-    ? sentence.replace('______', '<span class="blank" id="blank">______</span>')
-    : sentence + ' <span class="blank" id="blank">?</span>';
-  document.getElementById('sentence-box').innerHTML = display;
+  document.getElementById('cc-text').textContent = msg;
+  const sentence = q.sentence.includes('______')
+    ? q.sentence.replace('______', '<span class="blank" id="blank">______</span>')
+    : q.sentence + ' <span class="blank" id="blank">?</span>';
+  document.getElementById('sentence-box').innerHTML = sentence;
   document.getElementById('feedback').textContent = '';
   document.getElementById('feedback').style.color = '#fff';
   const eb = document.getElementById('explanation-box');
   eb.style.display = 'none'; eb.textContent = '';
-
   updateDot(idx, 'active');
 
   const opts = [...q.options].sort(() => 0.5 - Math.random());
   const div = document.getElementById('options');
   div.innerHTML = '';
-  const labels = ['A','B','C','D'];
-  opts.forEach((opt, i) => {
+  ['A','B','C','D'].forEach((lbl, i) => {
+    if (i >= opts.length) return;
     const b = document.createElement('button');
     b.className = 'opt-btn';
-    b.innerHTML = `<div class="opt-label">${labels[i]}</div><span>${opt}</span>`;
-    b.dataset.val = opt;
-    b.onclick = () => checkAnswer(opt, b);
+    b.innerHTML = `<div class="opt-label">${lbl}</div><span>${opts[i]}</span>`;
+    b.dataset.val = opts[i];
+    b.onclick = () => checkAnswer(opts[i], b);
     div.appendChild(b);
   });
 
@@ -852,8 +593,15 @@ function startTimer() {
   timerId = setInterval(() => {
     timeLeft--;
     bar.style.width = (timeLeft * 10) + '%';
-    if (timeLeft <= 3) { bar.style.background = 'var(--red)'; playTick(); }
-    if (timeLeft <= 0) { clearInterval(timerId); playBuzzer(); checkAnswer(null, null); }
+    if (timeLeft <= 3) {
+      bar.style.background = 'var(--red)';
+      playSound('tick');
+    }
+    if (timeLeft <= 0) {
+      clearInterval(timerId);
+      playSound('buzzer');
+      checkAnswer(null, null);
+    }
   }, 1000);
 }
 
@@ -867,15 +615,14 @@ function checkAnswer(sel, clickedBtn) {
   const eb = document.getElementById('explanation-box');
   buttons.forEach(b => b.disabled = true);
 
-  let correctBtn = null;
   buttons.forEach(b => {
-    if (b.dataset.val === q.correct) { b.classList.add('correct'); correctBtn = b; }
+    if (b.dataset.val === q.correct) b.classList.add('correct');
     else if (b === clickedBtn && sel !== q.correct) b.classList.add('wrong');
   });
 
   if (sel === q.correct) {
     score++; streak++;
-    playCorrect();
+    playSound('correct');
     fb.textContent = streak >= 3 ? 'On fire! ' + streak + 'x streak' : 'Correct!';
     fb.style.color = 'var(--gold-light)';
     document.getElementById('score-val').textContent = score;
@@ -885,17 +632,13 @@ function checkAnswer(sel, clickedBtn) {
   } else {
     streak = 0;
     document.getElementById('streak-val').textContent = '';
-    playWrong();
-    fb.textContent = sel === null ? 'Time\'s up! Answer: ' + q.correct : 'Incorrect! Answer: ' + q.correct;
+    if (sel !== null) playSound('wrong');
+    fb.textContent = sel === null ? "Time's up! Answer: " + q.correct : 'Incorrect! Answer: ' + q.correct;
     fb.style.color = 'var(--red)';
     updateDot(idx, 'wrong-done');
   }
 
-  if (q.explanation) {
-    eb.textContent = q.explanation;
-    eb.style.display = 'block';
-  }
-
+  if (q.explanation) { eb.textContent = q.explanation; eb.style.display = 'block'; }
   const blank = document.getElementById('blank');
   if (blank) blank.textContent = q.correct;
 
@@ -906,34 +649,33 @@ function updateDot(i, state) {
   const d = document.getElementById('dot-'+i);
   if (d) d.className = 'dot ' + state;
 }
-
 function showCombo(msg) {
   const t = document.getElementById('combo-toast');
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 1500);
 }
-
 function showEnd() {
+  stopSound('bg');
   document.getElementById('end-screen').style.display = 'flex';
   document.getElementById('end-num').textContent = score;
   document.getElementById('end-out').textContent = '/ ' + questions.length;
   const pct = score / questions.length;
-  let title = 'Keep practicing!', msg = 'Every expert was once a beginner. Try again!';
-  if (pct === 1) { title = 'Perfect score!'; msg = 'You nailed every single question. Share this quiz!'; }
-  else if (pct >= 0.8) { title = 'Excellent!'; msg = 'Almost perfect — you\'re nearly there!'; }
-  else if (pct >= 0.6) { title = 'Good work!'; msg = 'You\'re getting there. One more round?'; }
+  let title = 'Keep practicing!', msg = "Every expert was once a beginner. Try again!";
+  if (pct === 1)      { title = 'Perfect score!'; msg = "You nailed every question. Share this quiz!"; }
+  else if (pct >= 0.8){ title = 'Excellent!';     msg = "Almost perfect — you're nearly there!"; }
+  else if (pct >= 0.6){ title = 'Good work!';     msg = "You're getting there. One more round?"; }
   document.getElementById('end-title').textContent = title;
   document.getElementById('end-msg').textContent = msg;
-  playCorrect();
+  playSound('correct');
 }
-
 function resetQuiz() {
   document.getElementById('end-screen').style.display = 'none';
   idx = 0; score = 0; streak = 0;
   document.getElementById('score-val').textContent = '0';
   document.getElementById('streak-val').textContent = '';
   buildDots();
+  if (audioURLs.bg) playSound('bg');
   loadQuestion();
 }
 </script>
