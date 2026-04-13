@@ -585,14 +585,14 @@ function loadQuestion() {
 }
 
 function startTimer() {
-  timeLeft = 10;
+  timeLeft = 15;
   const bar = document.getElementById('timer-bar');
   bar.style.width = '100%';
   bar.style.background = 'var(--blue)';
   clearInterval(timerId);
   timerId = setInterval(() => {
     timeLeft--;
-    bar.style.width = (timeLeft * 10) + '%';
+    bar.style.width = (timeLeft * 15) + '%';
     if (timeLeft <= 3) {
       bar.style.background = 'var(--red)';
       playSound('tick');
